@@ -3,6 +3,7 @@ package com.github.kadehar.steps;
 import com.github.kadehar.config.Config;
 import com.github.kadehar.spec.Request;
 import io.restassured.response.Response;
+import org.apache.commons.lang3.StringUtils;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
@@ -36,6 +37,7 @@ public class Steps {
                                 .extract()
                                 .response();
         // @formatter:on
-        return response.htmlPath().getString("**.find{it.@class == 'count'}");
+        String value = response.htmlPath().getString("**.find{it.@class == 'count'}");
+        return StringUtils.substringBetween(value, "\n", "    ");
     }
 }

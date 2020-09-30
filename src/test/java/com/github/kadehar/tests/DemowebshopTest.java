@@ -27,7 +27,7 @@ public class DemowebshopTest extends TestBase {
                 steps.addItemToCart();
             });
             step("Удалить товар из корзины", () -> {
-                response = StringUtils.substringBetween(steps.deleteItemFromCart(), "\n", "    ");
+                response = steps.deleteItemFromCart();
             });
             step("Проверить что ответ равен 'You have no items in your shopping cart.'", () -> {
                 assertThat(response, equalTo("You have no items in your shopping cart."));
