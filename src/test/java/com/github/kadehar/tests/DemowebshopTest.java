@@ -1,6 +1,5 @@
 package com.github.kadehar.tests;
 
-import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -33,5 +32,11 @@ public class DemowebshopTest extends TestBase {
                 assertThat(response, equalTo("You have no items in your shopping cart."));
             });
         });
+    }
+
+    @Test
+    void getToken() {
+        String value = steps.token();
+        System.out.println("\nTOKEN VALUE IS " + value);
     }
 }

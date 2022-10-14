@@ -40,4 +40,19 @@ public class Steps {
         String value = response.htmlPath().getString("**.find{it.@class == 'count'}");
         return StringUtils.substringBetween(value, "\n", "    ");
     }
+
+    public String token() {
+        // @formatter:off
+        Response response = given()
+                                .spec(Request.spec())
+                                .log().uri()
+                            .when()
+                                .get("/register")
+                            .then()
+                                .log().body()
+                                .extract()
+                                .response();
+        // @formatter:on
+        return response.htmlPath().getString("**.find{it.@name == '__RequestVerificationToken'}.@value");
+    }
 }
